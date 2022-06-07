@@ -9,7 +9,11 @@ class registrationcontroller extends Controller
 {
     public function index()
     {
-        return view('form');
+        $url = url('/form');
+        $customer = new Customer();
+        $title = 'Customer Registration';
+        $data = compact('url', 'title','customer');
+        return view('form')->with($data);
     }
 
     public function register(Request $request){
@@ -50,4 +54,27 @@ class registrationcontroller extends Controller
         $customer = Customer::find($id)->delete();
         return redirect()->back();
     }
+
+    public function edit($id){
+        $customer = Customer::find($id);
+        if(is_null($customer)){
+            return redirect('show');
+        }
+        else{
+            $url = url('/update') . '/' .$id;
+            $title = 'Update Entry';
+            $data = compact('customer', 'url', 'title');
+            return view('form')->with($data);
+        }
+    }
+
+    public function update($id, Request $request){
+        $customer = Customer::find($id);
+        $customer->name = $request['name'];
+        // $customer->email = $request['email'];
+        $customer->save();
+        return redirect('show');
+        // print_r($customer);
+    }
+
 }

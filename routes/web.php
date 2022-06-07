@@ -27,9 +27,11 @@ Route:: get('/form',[registrationcontroller::class,'index']);
 Route:: post('/form',[registrationcontroller::class,'register']);
 Route:: get('/show',[registrationcontroller::class,'show']);
 Route:: get('/delete/{id}',[registrationcontroller::class,'delete']);
-Route::get("/customer",function()
-{
-    $customer=Customer::all();
-    echo"<pre>";
-    print_r($customer->toArray());
-});
+Route:: get('/edit/{id}',[registrationcontroller::class,'edit']);
+Route:: post('/update/{id}',[registrationcontroller::class,'update']);
+// Route::get("/customer",function()
+// {
+//     $customer=Customer::all();
+//     echo"<pre>";
+//     print_r($customer->toArray());
+// });

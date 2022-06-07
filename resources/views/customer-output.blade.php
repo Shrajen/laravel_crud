@@ -25,8 +25,8 @@
                   <td scope="row">{{$data->name}}</td>
                   <td>{{$data->email}}</td>
                   <td>{{$data->password}}</td>
-                  <td><a href="{{url('/delete')}}/{{$data->customer_id}}"><button type:submit style="background-color:red">Delete</button></a></td>
-                  <td><a href=""><div class="btn-danger">edit</div></a></td>
+                  <td><a href="{{url('/delete')}}/{{$data->customer_id}}"><button type:submit class="btn btn-warning">Delete</button></a></td>
+                  <td><a href="{{url('/edit')}}/{{$data->customer_id}}"><button type:submit class="btn btn-info">Edit</button></a></td>
               </tr>
               @endforeach
           </tbody>

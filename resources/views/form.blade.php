@@ -3,16 +3,43 @@
     <head>
         <title></title>
         <style>
+        body {
+            background: linear-gradient(120deg, #2980b9, #8e44ad);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .center{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+                    }
+
+                    form{
+                        background: gray;
+                        padding: 20px;
+                        border: 1px solid black; 
+                        width: 110%;
+                    }
+                    form label{
+                        padding-bottom: 5px;
+                    }
+
             span{
-                color: red;
+                color: burlywood;
+                font-size: 10px;
             }
         </style>
     </head>
-    <body>
-        <form action='{{url('/')}}/form' method="post" style="border: 1px solid black; padding:10px; width:50%">
+    <body >
+        <div class="center">
+        <h3 style="text-align: center">{{$title}}</h3>
+        <form action='{{$url}}' method="post" >
             @csrf
-            <label>Name</label><br>
-            <input type="text" name="name" value="{{old('name')}}">
+            <label >Name</label><br>
+            <input type="text" name="name" value="{{$customer->name}}" >
             <br>
             <span >
                 @error('name')
@@ -52,5 +79,6 @@
                 Submit
             </button>
         </form>
+    </div>
     </body>
 </html>
