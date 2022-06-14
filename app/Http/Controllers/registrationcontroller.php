@@ -40,11 +40,19 @@ class registrationcontroller extends Controller
         
     }
 
-    public function show(){
-        $customer = Customer::all();
+    public function show(Request $request){
+        $search = $request['search'] ?? "";
+        if($search != "")
+        {
+            $customer = Customer::where("name",'LIKE', $search)->get();
+        }
+        else{
+            $customer = Customer::paginate(15);
+        }
+       
         // echo '<pre>';
         // print_r($customer->all());
-        $data = compact('customer');
+        $data = compact('customer','search');
         return view('customer-output')->with($data);
 
     }
@@ -75,6 +83,12 @@ class registrationcontroller extends Controller
         $customer->save();
         return redirect('show');
         // print_r($customer);
+    }
+
+    public function search(Request $request){
+        print_r(request);
+
+
     }
 
 }
